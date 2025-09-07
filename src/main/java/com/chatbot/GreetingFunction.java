@@ -1,25 +1,34 @@
 package com.chatbot;
 
 import io.quarkus.funqy.Funq;
+import io.quarkus.funqy.http.FunqHttp;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
+// This class defines the serverless functions for our chatbot.
+// Funqy, an extension of Quarkus, automatically handles the routing
+// and HTTP binding for these methods based on the annotations.
 public class GreetingFunction {
-
     private static final Logger LOG = Logger.getLogger(GreetingFunction.class);
 
-    @Funq("hello")
-    public String getHello() {
-        LOG.info("Received a GET request for a greeting.");
-        return "Hello from the Quarkus chatbot! I am alive.";
-    }
+    // GET /api/hello
+    // This method is for a simple health check or a root greeting.
+    // The path is defined by the Funq annotation.
+        @Funq("hello")
+        public String getHello() {
+            LOG.info("Received a GET request for a greeting.");
+            return "Hello from the Quarkus chatbot! I am alive.";
+        }
 
-    @Funq("hello") 
-    public Response handlePost(JsonObject jsonBody) {
-        LOG.info("Quarkus HTTP trigger function processed a request.");
+    // POST /api/hello
+    // This method is for creating a new message or chat turn.
+    // The path is defined by the Funq annotation.
+    @Funq("hello")
+    public Response postHello(JsonObject jsonBody) {
+        LOG.info("Received a POST request with a message.");
 
         String userMessage = "";
         if (jsonBody.containsKey("message")) {
@@ -31,10 +40,9 @@ public class GreetingFunction {
                     .build();
         }
 
-        // This is the placeholder response. In a later step, you'll replace this with the AI agent call.
+        // This is a placeholder for the AI agent response.
         String botResponse = String.format("I received your message via Quarkus: '%s'. Thank you!", userMessage);
 
-        // Return the response as JSON
         return Response.ok()
                 .header("Content-Type", MediaType.APPLICATION_JSON)
                 .entity("{\"response\": \"" + botResponse + "\"}")
@@ -44,9 +52,8 @@ public class GreetingFunction {
     // PUT /api/messages/{id}
     // This method is for updating an entire message.
     // The Funqy framework automatically maps {id} from the path to the String id parameter.
-    
     @Funq("messages/{id}")
-     public Response putMessage(String id, JsonObject jsonBody) {
+    public Response putMessage(String id, JsonObject jsonBody) {
         LOG.infof("Received a PUT request to update message ID: %s", id);
 
         // In a real application, you would use 'id' to find a message in a database
