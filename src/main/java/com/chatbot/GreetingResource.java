@@ -14,7 +14,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/messages")
+@Path("/api")
 public class GreetingResource {
 
     private static final Logger LOG = Logger.getLogger(GreetingResource.class);
@@ -47,7 +47,7 @@ public class GreetingResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/messages/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response putMessage(@PathParam("id") String id, JsonObject jsonBody) {
@@ -66,7 +66,7 @@ public class GreetingResource {
     }
 
     @PATCH
-    @Path("/{id}")
+    @Path("/messages/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response patchMessage(@PathParam("id") String id, JsonObject jsonBody) {

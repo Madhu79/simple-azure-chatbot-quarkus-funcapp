@@ -12,7 +12,7 @@ public class GreetingResourceTest {
     @Test
     public void testGetHelloEndpoint() {
         given()
-          .when().get("/messages/hello")
+          .when().get("/api/hello")
           .then().statusCode(200);
     }
 
@@ -22,7 +22,7 @@ public class GreetingResourceTest {
           .contentType(MediaType.APPLICATION_JSON)
           .body("{\"message\": \"Hello from a test!\"}")
         .when()
-          .post("/messages/message")
+          .post("/api/message")
         .then()
           .statusCode(200);
     }
@@ -33,7 +33,7 @@ public class GreetingResourceTest {
           .contentType(MediaType.APPLICATION_JSON)
           .body("{\"message\": \"Updated content\"}")
         .when()
-          .put("/messages/123")
+          .put("/api/messages/123")
         .then()
           .statusCode(200);
     }
@@ -44,7 +44,7 @@ public class GreetingResourceTest {
           .contentType(MediaType.APPLICATION_JSON)
           .body("{\"status\": \"read\"}")
         .when()
-          .patch("/messages/456")
+          .patch("/api/messages/456")
         .then()
           .statusCode(200);
     }
