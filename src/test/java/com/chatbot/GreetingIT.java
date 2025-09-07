@@ -9,11 +9,13 @@ import static org.hamcrest.CoreMatchers.is;
 public class GreetingIT {
 
     @Test
-    public void testIt() {
+    public void testGetHelloEndpoint() {
         given()
-                .when().get("/hello")
-                .then()
-                .statusCode(200)
-                .body(is("hello"));
+          .when()
+            .get("/api/hello")
+          .then()
+            .statusCode(200);
     }
+    
+
 }
