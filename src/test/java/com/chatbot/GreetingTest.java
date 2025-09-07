@@ -1,21 +1,22 @@
 package com.chatbot;
 
-import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
+import io.quarkus.test.junit.QuarkusTest;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
+import jakarta.ws.rs.core.MediaType;
 
 @QuarkusTest
-class GreetingTest {
+public class GreetingTest {
 
+    // Test a POST request to create a new message
     @Test
-    public void testPostHelloEndpoint() {
+    public void testPostMessageEndpoint() {
         given()
           .contentType(MediaType.APPLICATION_JSON)
           .body("{\"message\": \"Hello from a test!\"}")
         .when()
-          .post("/api/hello")
+          .post("/api/message")
         .then()
           .statusCode(200);
     }
@@ -53,5 +54,4 @@ class GreetingTest {
         .then()
           .statusCode(200);
     }
-
 }
