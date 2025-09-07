@@ -1,7 +1,6 @@
 package com.chatbot;
 
 import io.quarkus.funqy.Funq;
-import io.quarkus.funqy.http.FunqHttp;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.ws.rs.core.MediaType;
@@ -17,11 +16,11 @@ public class GreetingFunction {
     // GET /api/hello
     // This method is for a simple health check or a root greeting.
     // The path is defined by the Funq annotation.
-        @Funq("hello")
-        public String getHello() {
-            LOG.info("Received a GET request for a greeting.");
-            return "Hello from the Quarkus chatbot! I am alive.";
-        }
+    @Funq("hello")
+    public String getHello() {
+        LOG.info("Received a GET request for a greeting.");
+        return "Hello from the Quarkus chatbot! I am alive.";
+    }
 
     // POST /api/hello
     // This method is for creating a new message or chat turn.
