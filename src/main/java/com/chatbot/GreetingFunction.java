@@ -11,7 +11,7 @@ public class GreetingFunction {
 
     private static final Logger LOG = Logger.getLogger(GreetingFunction.class);
 
-    @Funq
+    @Funq("hello") 
     public Response handlePost(JsonObject jsonBody) {
         LOG.info("Quarkus HTTP trigger function processed a request.");
 
