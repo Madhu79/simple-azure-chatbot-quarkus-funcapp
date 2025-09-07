@@ -12,7 +12,7 @@ public class GreetingIT {
     public void testGetHelloEndpoint() {
         given()
           .when()
-            .get("/api/hello")
+            .get("/messages/hello")
           .then()
             .statusCode(200);
     }
