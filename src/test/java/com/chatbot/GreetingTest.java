@@ -1,8 +1,12 @@
 package com.chatbot;
 
 import org.junit.jupiter.api.Test;
+<<<<<<< HEAD
 
 import io.quarkus.test.junit.QuarkusTest;
+=======
+import jakarta.ws.rs.core.MediaType;
+>>>>>>> b3893d575c6ced586d4df5d14d4200b081008255
 import static io.restassured.RestAssured.given;
 import jakarta.ws.rs.core.MediaType;
 
